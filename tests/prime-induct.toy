@@ -1,0 +1,19 @@
+# prime.toy with manual successive-differences transformation done on the loop variable.
+
+fun is_prime n = 
+
+  if n mod 2 = 0
+  then n = 2
+  else if n mod 3 = 0
+       then n = 3
+       else loop scan val i = 5
+                      val step = 96        # = 12 * i + 36
+                      val i_squared = 25
+              in if n < i_squared
+                 then n ~= 1
+                 else if n mod i = 0
+                      then 0
+                      else if n mod (i + 2) = 0
+                           then n < i_squared + (let val i2 = i + i in i2 + i2 end) + 4
+                           else scan (i + 6, step + 72, i_squared + step)
+             end

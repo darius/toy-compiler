@@ -1,0 +1,11 @@
+fun is_prime n = 
+
+  if n mod 2 = 0
+  then n = 2
+  else loop scan val i = 3
+         in if n < i * i
+            then 0
+            else if n mod i = 0
+                 then 1
+                 else scan (i + 2)
+        end

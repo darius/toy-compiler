@@ -1,0 +1,18 @@
+Lambda n
+  Loop again.68
+    Decl product.69
+      Int 1
+    Decl counter.70
+      Var n
+    If 
+      Prim =
+        Var counter.70
+        Int 0
+      Var product.69
+      App again.68
+        Prim *
+          Var product.69
+          Var counter.70
+        Prim -
+          Var counter.70
+          Int 1

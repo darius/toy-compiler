@@ -1,0 +1,16 @@
+Lproc p q r x y
+ Loop join.25 temp.20
+  Loop join.23 temp.19
+   Branch = X:temp.19 I:0
+    Ret X:x
+    Ret X:y
+   Branch = X:temp.20 I:0
+    Jump join.23 I:0
+    Branch = X:r I:0
+     Jump join.23 I:1
+     Jump join.23 I:0
+  Branch = X:p I:0
+   Jump join.25 I:0
+   Branch = X:q I:0
+    Jump join.25 I:0
+    Jump join.25 I:1

@@ -1,0 +1,27 @@
+Lambda limit
+  Loop l
+    Decl i
+      Int 0
+    Decl c
+      Int 0
+    If 
+      Prim =
+        Var i
+        Var limit
+      Var c
+      Let 
+        Decl c'
+          If 
+            Prim =
+              App f
+                Var i
+              Int 0
+            Prim +
+              Var c
+              Int 1
+            Var c
+        App l
+          Prim +
+            Var i
+            Int 1
+          Var c'

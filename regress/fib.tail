@@ -1,0 +1,21 @@
+Lambda n
+  If 
+    Prim <
+      Var n
+      Int 2
+    Int 1
+    Let 
+      Decl temp.10
+        App fib
+          Prim -
+            Var n
+            Int 1
+      Let 
+        Decl temp.11
+          App fib
+            Prim -
+              Var n
+              Int 2
+        Prim +
+          Var temp.10
+          Var temp.11

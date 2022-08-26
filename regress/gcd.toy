@@ -1,0 +1,4 @@
+fun gcd (x, y) = 
+  if y = 0
+  then if x < 0 then 0 - x else x      # um, shouldn't you take abs before the loop?
+  else gcd (y, x mod y)

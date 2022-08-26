@@ -1,0 +1,9 @@
+fun hotpo_period k = 
+  loop recur val p = 0
+             val k = k
+    in if k = 1
+       then p
+       else recur (p + 1,
+                   (if k mod 2 = 0 then k div 2 else 3 * k + 1))
+   end
+

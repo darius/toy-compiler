@@ -1,0 +1,7 @@
+fun fact n = 
+  loop again val product = 1
+             val counter = n
+    in if counter = 0
+       then product
+       else again (product * counter, counter - 1)
+   end

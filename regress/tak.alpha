@@ -1,0 +1,25 @@
+Lambda x y z
+  If 
+    Prim <=
+      Var x
+      Var y
+    Var z
+    App tak
+      App tak
+        Prim -
+          Var x
+          Int 1
+        Var y
+        Var z
+      App tak
+        Prim -
+          Var y
+          Int 1
+        Var z
+        Var x
+      App tak
+        Prim -
+          Var z
+          Int 1
+        Var x
+        Var y

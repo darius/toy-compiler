@@ -1,0 +1,32 @@
+Lambda k
+  Loop recur.52
+    Decl p.53
+      Int 0
+    Decl k.54
+      Var k
+    If 
+      Prim =
+        Var k.54
+        Int 1
+      Var p.53
+      Let 
+        Decl temp.55
+          If 
+            Prim =
+              Prim mod
+                Var k.54
+                Int 2
+              Int 0
+            Prim div
+              Var k.54
+              Int 2
+            Prim +
+              Prim *
+                Int 3
+                Var k.54
+              Int 1
+        App recur.52
+          Prim +
+            Var p.53
+            Int 1
+          Var temp.55

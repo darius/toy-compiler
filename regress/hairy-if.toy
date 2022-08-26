@@ -1,0 +1,6 @@
+fun hairy_condition (p, q, r, x, y) = 
+  if not (p andalso q andalso not r)
+  then x
+  else y
+
+  

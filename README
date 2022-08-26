@@ -1,0 +1,21 @@
+This is supposed to be a compiler from a toy programming language to
+MIPS assembly code.  (I never ran the output on an actual MIPS
+computer, though, just in simulation via an alternate backend
+generating C code.)  I wrote it in 1997 to work out design ideas
+mainly from Kelsey's ``A Correspondence between Continuation Passing
+Style and Static Single Assignment Form'', Appel's _Compiling With
+Continuations_, and Kelsey and Hudak's ``Realistic compilation by
+program transformation''.
+
+ast.sml gives the abstract syntax of the source language.
+
+I forget how to build it, except I used CM with SML/NJ, plus a parser
+generator, I think one called MLLex/MLYacc. (But the generated parser
+is also checked in to this repo, apparently.)
+
+To run tests: cd tests/ && make okay
+
+I've barely glanced over these files now in 2022; I hope there's
+nothing too embarrassing.
+
+Darius Bacon

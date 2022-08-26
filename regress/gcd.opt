@@ -1,0 +1,16 @@
+Lproc x y
+ Loop con.22
+  Prim - I:0 X:x	-> mergeval.24
+   Ret X:mergeval.24
+  Loop alt.23
+   Ret X:x
+   Loop con.20
+    Branch < X:x I:0
+     Jump con.22
+     Jump alt.23
+    Loop alt.21
+     Prim Mod X:x X:y	-> mergeval.27
+      Jump gcd X:y X:mergeval.27
+     Branch = X:y I:0
+      Jump con.20
+      Jump alt.21

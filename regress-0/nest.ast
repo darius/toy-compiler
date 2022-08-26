@@ -1,0 +1,4 @@
+Lambda x
+  App f
+    App f
+      Var x

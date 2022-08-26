@@ -1,0 +1,30 @@
+Lproc n
+ Loop con.188
+  Loop merge.191 mergeval.190
+   Ret X:mergeval.190
+   Branch = X:n I:2
+    Jump merge.191 I:1
+    Jump merge.191 I:0
+  Loop con.192
+   Ret I:0
+   Loop con.194
+    Ret I:1
+    Loop alt.189
+     Loop scan.186 i.187
+      Loop alt.195
+       Prim + X:i.187 I:2	-> mergeval.196
+        Jump scan.186 X:mergeval.196
+       Loop alt.193
+        Prim Mod X:n X:i.187	-> mergeval.197
+         Branch = X:mergeval.197 I:0
+          Jump con.194
+          Jump alt.195
+        Prim * X:i.187 X:i.187	-> mergeval.200
+         Branch < X:n X:mergeval.200
+          Jump con.192
+          Jump alt.193
+      Jump scan.186 I:3
+     Prim Mod X:n I:2	-> mergeval.203
+      Branch = X:mergeval.203 I:0
+       Jump con.188
+       Jump alt.189

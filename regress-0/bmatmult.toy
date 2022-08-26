@@ -1,0 +1,17 @@
+# Boolean matrix multiplication using arithmetic operators
+
+fun transpose a = ...
+
+fun population_count a = ...
+
+fun bmatmult (a, b) = 
+
+  #   The low 16 bits of a and b are 4x4 boolean matrices,
+  #   with the rows in consecutive 4-bit chunks.
+
+  let val a_t = transpose a
+   in loop times val i = 4
+                 val b = b
+        in ...
+       end
+  end

@@ -1,0 +1,6 @@
+if a =  b then m else n 	if a = b then m else n 
+if a ~= b then m else n 	if a = b then n else m 
+if a <  b then m else n 	if a < b then m else n 
+if a <= b then m else n 	if b < a then n else m 
+if a >  b then m else n 	if b < a then m else n 
+if a >= b then m else n 	if a < b then n else m 

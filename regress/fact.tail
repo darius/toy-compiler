@@ -1,0 +1,15 @@
+Lambda n
+  If 
+    Prim =
+      Var n
+      Int 0
+    Int 1
+    Let 
+      Decl temp.2
+        App fact
+          Prim -
+            Var n
+            Int 1
+      Prim *
+        Var n
+        Var temp.2

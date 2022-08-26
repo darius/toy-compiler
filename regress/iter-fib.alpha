@@ -1,0 +1,21 @@
+Lambda n
+  Loop recur.98
+    Decl i.99
+      Int 1
+    Decl a.100
+      Int 1
+    Decl b.101
+      Int 1
+    If 
+      Prim >=
+        Var i.99
+        Var n
+      Var a.100
+      App recur.98
+        Prim +
+          Var i.99
+          Int 1
+        Prim +
+          Var a.100
+          Var b.101
+        Var a.100

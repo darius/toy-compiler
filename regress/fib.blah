@@ -1,0 +1,9 @@
+Lproc n
+ Branch < X:n I:2
+  Ret I:1
+  Prim - X:n I:1	-> $11
+   Prim Call F:fib $11	-> $2
+    Prim - X:n I:2	-> $4
+     Prim Call F:fib $4	-> $11
+      Prim + $2 $11	-> $2
+       Ret $2

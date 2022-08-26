@@ -1,0 +1,12 @@
+Lproc x y z
+ Loop con.335
+  Ret I:42
+  Loop alt.336
+   Ret I:137
+   Branch = X:x I:0
+    Branch = X:z I:0
+     Jump alt.336
+     Jump con.335
+    Branch = X:y I:0
+     Jump alt.336
+     Jump con.335

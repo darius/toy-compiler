@@ -1,0 +1,14 @@
+Lambda x y
+  Let 
+    Decl temp.113
+      App h
+        Var y
+        Var y
+    Let 
+      Decl temp.114
+        App h
+          Var x
+          Var x
+      Prim +
+        Var temp.113
+        Var temp.114

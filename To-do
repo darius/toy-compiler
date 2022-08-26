@@ -1,0 +1,127 @@
+The cps representation as it is now kind of gives us the worst of both worlds:
+. It's too high-level in that the saves/restores around a call are not explicit,
+  and neither is the register shuffling for a jump/call -- so straightforward
+  code generation has visible seams at those points.
+. It's too low-level in that it's not really compositional -- free variables
+  are the result of an iterative dataflow analysis.  (This objection doesn't
+  feel quite so compelling... e.g. we could have a closure-conversion phase.
+  And anyway it's probably inherent to good register allocation... is it?)
+
+
+Find a mips arch manual.
+
+Find a mips to use.
+
+Have emitter modules export a register list.  Codegen then has to be a functor.
+
+Augment ast datatype with sourcefile positions.
+(How come it worked without them?)
+
+Better semantic error messages -- not just random exceptions out of the
+bowels of the system...
+
+A Loop in non-tail position should be a semantic error, unless you see a
+simple way to handle it.  Some of my code of the last couple days asssumes
+otherwise -- fix it.
+
+More readable generated names.  In particular, it would be nice if minor 
+changes to the code didn't fuck up regression diffs just because all the 
+temps have new number-suffixes.  For a start, we could reset the gensym
+counter in between programs.
+
+Change sets & maps to use the Basis library.
+
+Sets need to be parameterized by an equality predicate, or something.
+
+Do we really need fixed-point iteration for liveness analysis?
+
+Procedure application associates to the right... might be worth fixing.
+
+Unify the Ret and Jump cps-types.
+
+Maybe change Branch so its continuations are always 0-arg Jumps.
+
+Systematize the data-gathering, maybe allow annotations in cps trees.
+
+Write compilers in a constraint programming language.  Screamer?
+
+Theorem-prover to verify output of superoptimizer?  How much work?
+
+Maybe get that book _Inner Loops_ for benchmarking kernels.
+
+Think about analysis methods that are tuned for reducible flowgraphs
+but still work for irreducible ones, just not so well.
+
+Consider a code-generator for the MIX.
+
+What would constitute good programming-language support for graph
+algorithms?
+
+Other challenges for compilation:
+. forth
+. cellular automaton language
+. logic simulator
+. constraint language
+. unusual targets
+  e.g. dsp's, or optimizing for space instead of speed
+. silicon compilers
+
+We probably should do register allocation and spilling at the assembly
+level.
+
+This is still too complicated.  There are a number of ways this could 
+be simpler (and note simpler = faster, generally):
+. weaken the language
+  . eliminate the loop construct
+  . calls must be in tail position
+  . if you then add vectors, you might call the result TOYTRAN...
+. eliminate cps and generate assembly directly from ast's.
+. use a one-pass register allocator with some coarser approx to liveness.
+. generate better code for conditionals directly instead of cleaning up 
+  afterwards with a contraction phase.
+
+
+BUGS:
+
+What bugs?
+
+
+CODE QUALITY:
+
+. complex conditions
+. register allocation
+. better selection of traces
+. stack frames, save/restoring
+. callee-saves registers
+. special cases for multiply by power of two, etc.
+. common subexpressions
+. loop induction variables
+. instruction scheduling
+...
+
+
+LANGUAGE:
+
+. external functions
+. bitwise operators
+. heap-allocated, bounds-checked, mutable vectors
+. param/return count of 0 allowed. (and loops with 0 variables!)
+
+
+General principles:
+
+. separate front and back ends
+. `technology-independent' optimizations in intermediate code,
+  `technology-mapping' at the back end.
+. translation is easier with a fine grain size; this suggests:
+  . intermediate rep finer-grained than source and destination
+  . when you design the destination, make it fine grained (risc).
+. the `technology mapping' is about efficiently allocating resources;
+  it's a constraint satisfaction problem.  How much mileage can we 
+  get out of reducing to well-studied CSPs?  How much of a place do
+  they have in optimizing intermediate code?
+  (And, on the other end of the scale, allocating resources with agorics?)
+. specialization, interpreters, runtime code generation...
+. bootstrapping & reflection
+. deep knowledge of a few constructs vs. less knowledge about many
+. the phase-ordering problem

@@ -1,0 +1,9 @@
+fun countzeros limit = 
+      loop l val i = 0
+             val c = 0
+      in if i = limit
+         then c
+         else let val c' = if f i = 0 then c + 1 else c
+              in l (i + 1, c')
+              end
+      end

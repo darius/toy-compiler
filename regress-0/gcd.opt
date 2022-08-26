@@ -1,0 +1,8 @@
+Lproc x y
+ Branch = X:y I:0
+  Branch < X:x I:0
+   Prim - I:0 X:x	-> mergeval.21
+    Ret X:mergeval.21
+   Ret X:x
+  Prim Mod X:x X:y	-> mergeval.18
+   Jump gcd X:y X:mergeval.18

@@ -1,0 +1,21 @@
+fun dandiest_under limit = 
+  loop recur val best_start = 1
+             val best_period = 0
+             val k = limit
+    in if k = 1
+       then best_start
+       else let val p = loop inner val p = 0
+                                   val k = k
+                          in if k = 1
+                             then p
+                             else inner (p + 1,  # bad: this is compiled as a call, not a jump
+                                         if k mod 2 = 0 then k div 2 else 3 * k + 1)
+                         end
+
+             in if best_period <= p
+                then recur (k, p, k - 1)
+                else recur (best_start, best_period, k - 1)
+            end
+   end
+
+

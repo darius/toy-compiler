@@ -1,0 +1,21 @@
+Lambda n
+  Loop recur
+    Decl i
+      Int 1
+    Decl a
+      Int 1
+    Decl b
+      Int 1
+    If 
+      Prim >=
+        Var i
+        Var n
+      Var a
+      App recur
+        Prim +
+          Var i
+          Int 1
+        Prim +
+          Var a
+          Var b
+        Var a

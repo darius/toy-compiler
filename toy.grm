@@ -1,0 +1,104 @@
+structure A = Ast
+
+%%
+%term 
+      Teof | Tcomma | Tlparen | Trparen 
+    | Tfun | Tand | Tif | Tthen | Telse | Tlet | Tval | Tin | Tend | Tloop
+    | Teq | Tne | Tlt | Tle | Tgt | Tge | Tadd | Tsub | Tmul | Tdiv | Tmod 
+    | Tnot | Tandalso | Torelse
+    | Tid of string
+    | Tinteger of int
+
+%nonterm  
+	  program     of (Stuff.l * A.p) list
+	| procdecl    of (Stuff.l * A.p) list
+	| mutuals     of (Stuff.l * A.p) list
+	| params      of Stuff.x list
+	| rest_params of Stuff.x list
+	| param       of Stuff.x
+	| primary     of A.e
+	| exp         of A.e
+	| args        of A.e list
+	| rest_args   of A.e list
+	| decls       of (Stuff.x * A.e) list
+	| decl        of Stuff.x * A.e
+
+%pos int
+%verbose
+%start program
+%eop Teof
+%noshift Teof
+
+%name Toy
+
+%keyword Tfun Tand Tif Tthen Telse Tlet Tval Tin Tend Tloop 
+         Tnot Tandalso Torelse
+
+%prefer Tthen Telse Tlparen
+
+%value Tid ("bogus")
+%value Tinteger (666)
+
+%left Torelse
+%left Tandalso
+%left Tnot
+%nonassoc Teq Tne Tlt Tle Tgt Tge
+%left Tadd Tsub
+%left Tmul Tdiv Tmod
+
+%%
+
+program : Tfun procdecl			(procdecl)
+
+procdecl:  Tid params Teq exp mutuals	((Stuff.L Tid, A.Lambda (params, exp)) :: mutuals)
+mutuals	:  Tand procdecl		(procdecl)
+	|  				([])
+
+params	:  param 				([param])
+	|  Tlparen param rest_params Trparen	(param :: rest_params)
+
+rest_params :  Tcomma param rest_params	(param :: rest_params)
+	    |  				([])
+
+param	:  Tid				(Stuff.V Tid)
+
+primary :  Tinteger			(A.Int Tinteger)
+	|  Tid				(A.Var (Stuff.V Tid))
+	|  Tid args			(A.App (Stuff.L Tid, args))
+	|  Tlparen exp Trparen		(exp)
+	|  Tif exp Tthen exp Telse exp	(A.If (exp1, exp2, exp3))
+	|  Tlet decls Tin exp Tend	(A.Let (decls, exp))
+	|  Tloop Tid decls Tin exp Tend	(A.Loop (Stuff.L Tid, decls, exp))
+
+exp	:  primary			(primary)
+        |  exp Torelse exp              (A.If (exp1, 
+                                               A.Int 1,
+                                               A.If (exp2, A.Int 1, A.Int 0)))
+        |  exp Tandalso exp             (A.If (exp1, 
+                                               A.If (exp2, A.Int 1, A.Int 0),
+                                               A.Int 0))
+        |  Tnot exp                     (A.If (exp, A.Int 0, A.Int 1))
+	|  exp Teq  exp			(A.Prim (A.Eq,  [exp1, exp2]))
+	|  exp Tne  exp			(A.Prim (A.Ne,  [exp1, exp2]))
+	|  exp Tlt  exp			(A.Prim (A.Lt,  [exp1, exp2]))
+	|  exp Tle  exp			(A.Prim (A.Le,  [exp1, exp2]))
+	|  exp Tgt  exp			(A.Prim (A.Gt,  [exp1, exp2]))
+	|  exp Tge  exp			(A.Prim (A.Ge,  [exp1, exp2]))
+	|  exp Tadd exp			(A.Prim (A.Add, [exp1, exp2]))
+	|  exp Tsub exp			(A.Prim (A.Sub, [exp1, exp2]))
+	|  exp Tmul exp			(A.Prim (A.Mul, [exp1, exp2]))
+	|  exp Tdiv exp			(A.Prim (A.Div, [exp1, exp2]))
+	|  exp Tmod exp			(A.Prim (A.Mod, [exp1, exp2]))
+
+(* This should really be `args: exp' but I'm not sure how to resolve 
+   the ambiguity correctly: *)
+args    :  primary				([primary])
+        |  Tlparen exp rest_args Trparen	(exp :: rest_args)
+
+rest_args :  Tcomma exp rest_args	(exp :: rest_args)
+          |  				([])
+
+decls	:  decl decls			(decl :: decls)
+	|				([])
+
+decl	:  Tval Tid Teq exp		((Stuff.V Tid, exp))

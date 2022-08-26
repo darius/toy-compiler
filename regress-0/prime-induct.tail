@@ -1,0 +1,70 @@
+Lambda n
+  If 
+    Prim =
+      Prim mod
+        Var n
+        Int 2
+      Int 0
+    Prim =
+      Var n
+      Int 2
+    If 
+      Prim =
+        Prim mod
+          Var n
+          Int 3
+        Int 0
+      Prim =
+        Var n
+        Int 3
+      Loop scan.166
+        Decl i.167
+          Int 5
+        Decl step.168
+          Int 96
+        Decl i_squared.169
+          Int 25
+        If 
+          Prim <
+            Var n
+            Var i_squared.169
+          Int 0
+          If 
+            Prim =
+              Prim mod
+                Var n
+                Var i.167
+              Int 0
+            Int 1
+            If 
+              Prim =
+                Prim mod
+                  Var n
+                  Prim +
+                    Var i.167
+                    Int 2
+                Int 0
+              Let 
+                Decl i2.170
+                  Prim +
+                    Var i.167
+                    Var i.167
+                Prim <=
+                  Prim +
+                    Prim +
+                      Var i_squared.169
+                      Prim +
+                        Var i2.170
+                        Var i2.170
+                    Int 4
+                  Var n
+              App scan.166
+                Prim +
+                  Var i.167
+                  Int 6
+                Prim +
+                  Var step.168
+                  Int 72
+                Prim +
+                  Var i_squared.169
+                  Var step.168

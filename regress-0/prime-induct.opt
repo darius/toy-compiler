@@ -1,0 +1,32 @@
+Lproc n
+ Prim Mod X:n I:2	-> mergeval.171
+  Branch = X:mergeval.171 I:0
+   Branch = X:n I:2
+    Ret I:1
+    Ret I:0
+   Prim Mod X:n I:3	-> mergeval.174
+    Branch = X:mergeval.174 I:0
+     Branch = X:n I:3
+      Ret I:1
+      Ret I:0
+     Loop scan.166 i.167 step.168 i_squared.169
+      Branch < X:n X:i_squared.169
+       Ret I:0
+       Prim Mod X:n X:i.167	-> mergeval.179
+        Branch = X:mergeval.179 I:0
+         Ret I:1
+         Prim + X:i.167 I:2	-> mergeval.182
+          Prim Mod X:n X:mergeval.182	-> mergeval.183
+           Branch = X:mergeval.183 I:0
+            Prim + X:i.167 X:i.167	-> mergeval.194
+             Prim + X:mergeval.194 X:mergeval.194	-> mergeval.189
+              Prim + X:i_squared.169 X:mergeval.189	-> mergeval.190
+               Prim + X:mergeval.190 I:4	-> mergeval.191
+                Branch < X:n X:mergeval.191
+                 Ret I:0
+                 Ret I:1
+            Prim + X:i.167 I:6	-> mergeval.186
+             Prim + X:step.168 I:72	-> mergeval.187
+              Prim + X:i_squared.169 X:step.168	-> mergeval.188
+               Jump scan.166 X:mergeval.186 X:mergeval.187 X:mergeval.188
+      Jump scan.166 I:5 I:96 I:25

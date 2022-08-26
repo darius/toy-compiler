@@ -1,0 +1,9 @@
+Lproc x
+ Loop con.298
+  Prim Mod X:x I:2	-> mergeval.302
+   Branch = X:mergeval.302 I:0
+    Jump foo X:x
+    Jump bar X:x
+  Branch < I:0 X:x
+   Jump bar X:x
+   Jump con.298

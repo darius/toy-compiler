@@ -1,0 +1,16 @@
+Lproc n
+ Prim Mod X:n I:2	-> mergeval.150
+  Branch = X:mergeval.150 I:0
+   Branch = X:n I:2
+    Ret I:1
+    Ret I:0
+   Loop scan.148 i.149
+    Prim * X:i.149 X:i.149	-> mergeval.153
+     Branch < X:n X:mergeval.153
+      Ret I:0
+      Prim Mod X:n X:i.149	-> mergeval.156
+       Branch = X:mergeval.156 I:0
+        Ret I:1
+        Prim + X:i.149 I:2	-> mergeval.159
+         Jump scan.148 X:mergeval.159
+    Jump scan.148 I:3

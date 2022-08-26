@@ -1,0 +1,7 @@
+Lproc n
+ Branch = X:n I:0
+  Ret I:1
+  Prim - X:n I:1	-> mergeval.6
+   Prim Call F:fact X:mergeval.6	-> temp.2
+    Prim * X:n X:temp.2	-> mergeval.5
+     Ret X:mergeval.5

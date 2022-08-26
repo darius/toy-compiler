@@ -1,0 +1,8 @@
+Lambda x y z
+  If 
+    If 
+      Var x
+      Var y
+      Var z
+    Int 42
+    Int 137

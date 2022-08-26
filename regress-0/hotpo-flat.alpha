@@ -1,0 +1,56 @@
+Lambda limit
+  Loop recur.24
+    Decl best_start.25
+      Int 1
+    Decl best_period.26
+      Int 0
+    Decl k.27
+      Var limit
+    If 
+      Prim =
+        Var k.27
+        Int 1
+      Var best_start.25
+      Loop inner.28
+        Decl p.29
+          Int 0
+        Decl k.30
+          Var k.27
+        If 
+          Prim =
+            Var k.30
+            Int 1
+          If 
+            Prim <=
+              Var best_period.26
+              Var p.29
+            App recur.24
+              Var k.30
+              Var p.29
+              Prim -
+                Var k.30
+                Int 1
+            App recur.24
+              Var best_start.25
+              Var best_period.26
+              Prim -
+                Var k.30
+                Int 1
+          App inner.28
+            Prim +
+              Var p.29
+              Int 1
+            If 
+              Prim =
+                Prim mod
+                  Var k.30
+                  Int 2
+                Int 0
+              Prim div
+                Var k.30
+                Int 2
+              Prim +
+                Prim *
+                  Int 3
+                  Var k.30
+                Int 1

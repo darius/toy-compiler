@@ -1,0 +1,35 @@
+Lambda p q r x y
+  Let 
+    Decl temp.309
+      Let 
+        Decl temp.310
+          Let 
+            Decl temp.311
+              If 
+                Var p
+                If 
+                  Var q
+                  Int 1
+                  Int 0
+                Int 0
+            If 
+              Var temp.311
+              Let 
+                Decl temp.312
+                  If 
+                    Var r
+                    Int 0
+                    Int 1
+                If 
+                  Var temp.312
+                  Int 1
+                  Int 0
+              Int 0
+        If 
+          Var temp.310
+          Int 0
+          Int 1
+    If 
+      Var temp.309
+      Var x
+      Var y

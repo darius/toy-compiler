@@ -1,0 +1,3 @@
+#!/bin/sh
+wc `gawk '/[.]cm$/ { next }; /[.]/ { print }' sources.cm` \
+   runtime/*.[ch] tests/*.toy tests/*.scm tests/check

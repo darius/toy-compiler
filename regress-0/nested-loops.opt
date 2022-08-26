@@ -1,0 +1,15 @@
+Lproc limit
+ Loop recur.95 best_start.96 best_period.97 k.98
+  Branch = X:k.98 I:1
+   Ret X:best_start.96
+   Loop recur.100 p.101
+    Loop join.105 p.99
+     Prim - X:k.98 I:1	-> mergeval.104
+      Jump recur.95 X:best_start.96 X:best_period.97 X:mergeval.104
+     Branch = X:k.98 I:1
+      Jump join.105 X:p.101
+      Prim + X:p.101 I:1	-> mergeval.108
+       Prim Call F:recur.100 X:mergeval.108	-> retval.109
+        Jump join.105 X:retval.109
+    Jump recur.100 I:0
+  Jump recur.95 I:1 I:0 X:limit

@@ -1,0 +1,1658 @@
+14 shift/reduce conflicts
+
+error:  state 62: shift/reduce conflict (shift Trparen, reduce by rule 34)
+error:  state 84: shift/reduce conflict (shift Torelse, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tandalso, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tmod, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tdiv, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tmul, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tsub, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tadd, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tge, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tgt, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tle, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tlt, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tne, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Teq, reduce by rule 13)
+
+state 0:
+
+	program : . Tfun procdecl 
+
+	Tfun	shift 1
+
+	program	goto 85
+
+	.	error
+
+
+state 1:
+
+	program : Tfun . procdecl 
+
+	Tid	shift 3
+
+	procdecl	goto 2
+
+	.	error
+
+
+state 2:
+
+	program : Tfun procdecl .  (reduce by rule 0)
+
+
+
+	.	reduce by rule 0
+
+
+state 3:
+
+	procdecl : Tid . params Teq exp mutuals 
+
+	Tlparen	shift 7
+	Tid	shift 6
+
+	params	goto 5
+	param	goto 4
+
+	.	error
+
+
+state 4:
+
+	params : param .  (reduce by rule 4)
+
+
+
+	.	reduce by rule 4
+
+
+state 5:
+
+	procdecl : Tid params . Teq exp mutuals 
+
+	Teq	shift 8
+
+
+	.	error
+
+
+state 6:
+
+	param : Tid .  (reduce by rule 8)
+
+
+
+	.	reduce by rule 8
+
+
+state 7:
+
+	params : Tlparen . param rest_params Trparen 
+
+	Tid	shift 6
+
+	param	goto 9
+
+	.	error
+
+
+state 8:
+
+	procdecl : Tid params Teq . exp mutuals 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 10
+
+	.	error
+
+
+state 9:
+
+	params : Tlparen param . rest_params Trparen 
+
+	Tcomma	shift 20
+
+	rest_params	goto 19
+
+	.	reduce by rule 7
+
+
+state 10:
+
+	procdecl : Tid params Teq exp . mutuals 
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+
+	Tand	shift 35
+	Teq	shift 34
+	Tne	shift 33
+	Tlt	shift 32
+	Tle	shift 31
+	Tgt	shift 30
+	Tge	shift 29
+	Tadd	shift 28
+	Tsub	shift 27
+	Tmul	shift 26
+	Tdiv	shift 25
+	Tmod	shift 24
+	Tandalso	shift 23
+	Torelse	shift 22
+
+	mutuals	goto 21
+
+	.	reduce by rule 3
+
+
+state 11:
+
+	exp : primary .  (reduce by rule 16)
+
+
+
+	.	reduce by rule 16
+
+
+state 12:
+
+	primary : Tinteger .  (reduce by rule 9)
+
+
+
+	.	reduce by rule 9
+
+
+state 13:
+
+	primary : Tid .  (reduce by rule 10)
+	primary : Tid . args 
+
+	Tlparen	shift 38
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 37
+	args	goto 36
+
+	.	reduce by rule 10
+
+
+state 14:
+
+	exp : Tnot . exp 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 39
+
+	.	error
+
+
+state 15:
+
+	primary : Tloop . Tid decls Tin exp Tend 
+
+	Tid	shift 40
+
+
+	.	error
+
+
+state 16:
+
+	primary : Tlet . decls Tin exp Tend 
+
+	Tval	shift 43
+
+	decls	goto 42
+	decl	goto 41
+
+	.	reduce by rule 36
+
+
+state 17:
+
+	primary : Tif . exp Tthen exp Telse exp 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 44
+
+	.	error
+
+
+state 18:
+
+	primary : Tlparen . exp Trparen 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 45
+
+	.	error
+
+
+state 19:
+
+	params : Tlparen param rest_params . Trparen 
+
+	Trparen	shift 46
+
+
+	.	error
+
+
+state 20:
+
+	rest_params : Tcomma . param rest_params 
+
+	Tid	shift 6
+
+	param	goto 47
+
+	.	error
+
+
+state 21:
+
+	procdecl : Tid params Teq exp mutuals .  (reduce by rule 1)
+
+
+
+	.	reduce by rule 1
+
+
+state 22:
+
+	exp : exp Torelse . exp 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 48
+
+	.	error
+
+
+state 23:
+
+	exp : exp Tandalso . exp 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 49
+
+	.	error
+
+
+state 24:
+
+	exp : exp Tmod . exp 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 50
+
+	.	error
+
+
+state 25:
+
+	exp : exp Tdiv . exp 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 51
+
+	.	error
+
+
+state 26:
+
+	exp : exp Tmul . exp 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 52
+
+	.	error
+
+
+state 27:
+
+	exp : exp Tsub . exp 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 53
+
+	.	error
+
+
+state 28:
+
+	exp : exp Tadd . exp 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 54
+
+	.	error
+
+
+state 29:
+
+	exp : exp Tge . exp 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 55
+
+	.	error
+
+
+state 30:
+
+	exp : exp Tgt . exp 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 56
+
+	.	error
+
+
+state 31:
+
+	exp : exp Tle . exp 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 57
+
+	.	error
+
+
+state 32:
+
+	exp : exp Tlt . exp 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 58
+
+	.	error
+
+
+state 33:
+
+	exp : exp Tne . exp 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 59
+
+	.	error
+
+
+state 34:
+
+	exp : exp Teq . exp 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 60
+
+	.	error
+
+
+state 35:
+
+	mutuals : Tand . procdecl 
+
+	Tid	shift 3
+
+	procdecl	goto 61
+
+	.	error
+
+
+state 36:
+
+	primary : Tid args .  (reduce by rule 11)
+
+
+
+	.	reduce by rule 11
+
+
+state 37:
+
+	args : primary .  (reduce by rule 31)
+
+
+
+	.	reduce by rule 31
+
+
+state 38:
+
+	primary : Tlparen . exp Trparen 
+	args : Tlparen . exp rest_args Trparen 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 62
+
+	.	error
+
+
+state 39:
+
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : Tnot exp .  (reduce by rule 19)
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+
+	Teq	shift 34
+	Tne	shift 33
+	Tlt	shift 32
+	Tle	shift 31
+	Tgt	shift 30
+	Tge	shift 29
+	Tadd	shift 28
+	Tsub	shift 27
+	Tmul	shift 26
+	Tdiv	shift 25
+	Tmod	shift 24
+
+
+	.	reduce by rule 19
+
+
+state 40:
+
+	primary : Tloop Tid . decls Tin exp Tend 
+
+	Tval	shift 43
+
+	decls	goto 63
+	decl	goto 41
+
+	.	reduce by rule 36
+
+
+state 41:
+
+	decls : decl . decls 
+
+	Tval	shift 43
+
+	decls	goto 64
+	decl	goto 41
+
+	.	reduce by rule 36
+
+
+state 42:
+
+	primary : Tlet decls . Tin exp Tend 
+
+	Tin	shift 65
+
+
+	.	error
+
+
+state 43:
+
+	decl : Tval . Tid Teq exp 
+
+	Tid	shift 66
+
+
+	.	error
+
+
+state 44:
+
+	primary : Tif exp . Tthen exp Telse exp 
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+
+	Tthen	shift 67
+	Teq	shift 34
+	Tne	shift 33
+	Tlt	shift 32
+	Tle	shift 31
+	Tgt	shift 30
+	Tge	shift 29
+	Tadd	shift 28
+	Tsub	shift 27
+	Tmul	shift 26
+	Tdiv	shift 25
+	Tmod	shift 24
+	Tandalso	shift 23
+	Torelse	shift 22
+
+
+	.	error
+
+
+state 45:
+
+	primary : Tlparen exp . Trparen 
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+
+	Trparen	shift 68
+	Teq	shift 34
+	Tne	shift 33
+	Tlt	shift 32
+	Tle	shift 31
+	Tgt	shift 30
+	Tge	shift 29
+	Tadd	shift 28
+	Tsub	shift 27
+	Tmul	shift 26
+	Tdiv	shift 25
+	Tmod	shift 24
+	Tandalso	shift 23
+	Torelse	shift 22
+
+
+	.	error
+
+
+state 46:
+
+	params : Tlparen param rest_params Trparen .  (reduce by rule 5)
+
+
+
+	.	reduce by rule 5
+
+
+state 47:
+
+	rest_params : Tcomma param . rest_params 
+
+	Tcomma	shift 20
+
+	rest_params	goto 69
+
+	.	reduce by rule 7
+
+
+state 48:
+
+	exp : exp . Torelse exp 
+	exp : exp Torelse exp .  (reduce by rule 17)
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+
+	Teq	shift 34
+	Tne	shift 33
+	Tlt	shift 32
+	Tle	shift 31
+	Tgt	shift 30
+	Tge	shift 29
+	Tadd	shift 28
+	Tsub	shift 27
+	Tmul	shift 26
+	Tdiv	shift 25
+	Tmod	shift 24
+	Tandalso	shift 23
+
+
+	.	reduce by rule 17
+
+
+state 49:
+
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp Tandalso exp .  (reduce by rule 18)
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+
+	Teq	shift 34
+	Tne	shift 33
+	Tlt	shift 32
+	Tle	shift 31
+	Tgt	shift 30
+	Tge	shift 29
+	Tadd	shift 28
+	Tsub	shift 27
+	Tmul	shift 26
+	Tdiv	shift 25
+	Tmod	shift 24
+
+
+	.	reduce by rule 18
+
+
+state 50:
+
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+	exp : exp Tmod exp .  (reduce by rule 30)
+
+
+
+	.	reduce by rule 30
+
+
+state 51:
+
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp Tdiv exp .  (reduce by rule 29)
+	exp : exp . Tmod exp 
+
+
+
+	.	reduce by rule 29
+
+
+state 52:
+
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp Tmul exp .  (reduce by rule 28)
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+
+
+
+	.	reduce by rule 28
+
+
+state 53:
+
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp Tsub exp .  (reduce by rule 27)
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+
+	Tmul	shift 26
+	Tdiv	shift 25
+	Tmod	shift 24
+
+
+	.	reduce by rule 27
+
+
+state 54:
+
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp Tadd exp .  (reduce by rule 26)
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+
+	Tmul	shift 26
+	Tdiv	shift 25
+	Tmod	shift 24
+
+
+	.	reduce by rule 26
+
+
+state 55:
+
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp Tge exp .  (reduce by rule 25)
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+
+	Teof	reduce by rule 25
+	Tcomma	reduce by rule 25
+	Trparen	reduce by rule 25
+	Tand	reduce by rule 25
+	Tthen	reduce by rule 25
+	Telse	reduce by rule 25
+	Tval	reduce by rule 25
+	Tin	reduce by rule 25
+	Tend	reduce by rule 25
+	Tadd	shift 28
+	Tsub	shift 27
+	Tmul	shift 26
+	Tdiv	shift 25
+	Tmod	shift 24
+	Tandalso	reduce by rule 25
+	Torelse	reduce by rule 25
+
+
+	.	error
+
+
+state 56:
+
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp Tgt exp .  (reduce by rule 24)
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+
+	Teof	reduce by rule 24
+	Tcomma	reduce by rule 24
+	Trparen	reduce by rule 24
+	Tand	reduce by rule 24
+	Tthen	reduce by rule 24
+	Telse	reduce by rule 24
+	Tval	reduce by rule 24
+	Tin	reduce by rule 24
+	Tend	reduce by rule 24
+	Tadd	shift 28
+	Tsub	shift 27
+	Tmul	shift 26
+	Tdiv	shift 25
+	Tmod	shift 24
+	Tandalso	reduce by rule 24
+	Torelse	reduce by rule 24
+
+
+	.	error
+
+
+state 57:
+
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp Tle exp .  (reduce by rule 23)
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+
+	Teof	reduce by rule 23
+	Tcomma	reduce by rule 23
+	Trparen	reduce by rule 23
+	Tand	reduce by rule 23
+	Tthen	reduce by rule 23
+	Telse	reduce by rule 23
+	Tval	reduce by rule 23
+	Tin	reduce by rule 23
+	Tend	reduce by rule 23
+	Tadd	shift 28
+	Tsub	shift 27
+	Tmul	shift 26
+	Tdiv	shift 25
+	Tmod	shift 24
+	Tandalso	reduce by rule 23
+	Torelse	reduce by rule 23
+
+
+	.	error
+
+
+state 58:
+
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp Tlt exp .  (reduce by rule 22)
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+
+	Teof	reduce by rule 22
+	Tcomma	reduce by rule 22
+	Trparen	reduce by rule 22
+	Tand	reduce by rule 22
+	Tthen	reduce by rule 22
+	Telse	reduce by rule 22
+	Tval	reduce by rule 22
+	Tin	reduce by rule 22
+	Tend	reduce by rule 22
+	Tadd	shift 28
+	Tsub	shift 27
+	Tmul	shift 26
+	Tdiv	shift 25
+	Tmod	shift 24
+	Tandalso	reduce by rule 22
+	Torelse	reduce by rule 22
+
+
+	.	error
+
+
+state 59:
+
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp Tne exp .  (reduce by rule 21)
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+
+	Teof	reduce by rule 21
+	Tcomma	reduce by rule 21
+	Trparen	reduce by rule 21
+	Tand	reduce by rule 21
+	Tthen	reduce by rule 21
+	Telse	reduce by rule 21
+	Tval	reduce by rule 21
+	Tin	reduce by rule 21
+	Tend	reduce by rule 21
+	Tadd	shift 28
+	Tsub	shift 27
+	Tmul	shift 26
+	Tdiv	shift 25
+	Tmod	shift 24
+	Tandalso	reduce by rule 21
+	Torelse	reduce by rule 21
+
+
+	.	error
+
+
+state 60:
+
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp Teq exp .  (reduce by rule 20)
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+
+	Teof	reduce by rule 20
+	Tcomma	reduce by rule 20
+	Trparen	reduce by rule 20
+	Tand	reduce by rule 20
+	Tthen	reduce by rule 20
+	Telse	reduce by rule 20
+	Tval	reduce by rule 20
+	Tin	reduce by rule 20
+	Tend	reduce by rule 20
+	Tadd	shift 28
+	Tsub	shift 27
+	Tmul	shift 26
+	Tdiv	shift 25
+	Tmod	shift 24
+	Tandalso	reduce by rule 20
+	Torelse	reduce by rule 20
+
+
+	.	error
+
+
+state 61:
+
+	mutuals : Tand procdecl .  (reduce by rule 2)
+
+
+
+	.	reduce by rule 2
+
+error:  state 62: shift/reduce conflict (shift Trparen, reduce by rule 34)
+
+state 62:
+
+	primary : Tlparen exp . Trparen 
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+	args : Tlparen exp . rest_args Trparen 
+
+	Tcomma	shift 71
+	Trparen	shift 68
+	Teq	shift 34
+	Tne	shift 33
+	Tlt	shift 32
+	Tle	shift 31
+	Tgt	shift 30
+	Tge	shift 29
+	Tadd	shift 28
+	Tsub	shift 27
+	Tmul	shift 26
+	Tdiv	shift 25
+	Tmod	shift 24
+	Tandalso	shift 23
+	Torelse	shift 22
+
+	rest_args	goto 70
+
+	.	error
+
+
+state 63:
+
+	primary : Tloop Tid decls . Tin exp Tend 
+
+	Tin	shift 72
+
+
+	.	error
+
+
+state 64:
+
+	decls : decl decls .  (reduce by rule 35)
+
+
+
+	.	reduce by rule 35
+
+
+state 65:
+
+	primary : Tlet decls Tin . exp Tend 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 73
+
+	.	error
+
+
+state 66:
+
+	decl : Tval Tid . Teq exp 
+
+	Teq	shift 74
+
+
+	.	error
+
+
+state 67:
+
+	primary : Tif exp Tthen . exp Telse exp 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 75
+
+	.	error
+
+
+state 68:
+
+	primary : Tlparen exp Trparen .  (reduce by rule 12)
+
+
+
+	.	reduce by rule 12
+
+
+state 69:
+
+	rest_params : Tcomma param rest_params .  (reduce by rule 6)
+
+
+
+	.	reduce by rule 6
+
+
+state 70:
+
+	args : Tlparen exp rest_args . Trparen 
+
+	Trparen	shift 76
+
+
+	.	error
+
+
+state 71:
+
+	rest_args : Tcomma . exp rest_args 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 77
+
+	.	error
+
+
+state 72:
+
+	primary : Tloop Tid decls Tin . exp Tend 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 78
+
+	.	error
+
+
+state 73:
+
+	primary : Tlet decls Tin exp . Tend 
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+
+	Tend	shift 79
+	Teq	shift 34
+	Tne	shift 33
+	Tlt	shift 32
+	Tle	shift 31
+	Tgt	shift 30
+	Tge	shift 29
+	Tadd	shift 28
+	Tsub	shift 27
+	Tmul	shift 26
+	Tdiv	shift 25
+	Tmod	shift 24
+	Tandalso	shift 23
+	Torelse	shift 22
+
+
+	.	error
+
+
+state 74:
+
+	decl : Tval Tid Teq . exp 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 80
+
+	.	error
+
+
+state 75:
+
+	primary : Tif exp Tthen exp . Telse exp 
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+
+	Telse	shift 81
+	Teq	shift 34
+	Tne	shift 33
+	Tlt	shift 32
+	Tle	shift 31
+	Tgt	shift 30
+	Tge	shift 29
+	Tadd	shift 28
+	Tsub	shift 27
+	Tmul	shift 26
+	Tdiv	shift 25
+	Tmod	shift 24
+	Tandalso	shift 23
+	Torelse	shift 22
+
+
+	.	error
+
+
+state 76:
+
+	args : Tlparen exp rest_args Trparen .  (reduce by rule 32)
+
+
+
+	.	reduce by rule 32
+
+
+state 77:
+
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+	rest_args : Tcomma exp . rest_args 
+
+	Tcomma	shift 71
+	Teq	shift 34
+	Tne	shift 33
+	Tlt	shift 32
+	Tle	shift 31
+	Tgt	shift 30
+	Tge	shift 29
+	Tadd	shift 28
+	Tsub	shift 27
+	Tmul	shift 26
+	Tdiv	shift 25
+	Tmod	shift 24
+	Tandalso	shift 23
+	Torelse	shift 22
+
+	rest_args	goto 82
+
+	.	reduce by rule 34
+
+
+state 78:
+
+	primary : Tloop Tid decls Tin exp . Tend 
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+
+	Tend	shift 83
+	Teq	shift 34
+	Tne	shift 33
+	Tlt	shift 32
+	Tle	shift 31
+	Tgt	shift 30
+	Tge	shift 29
+	Tadd	shift 28
+	Tsub	shift 27
+	Tmul	shift 26
+	Tdiv	shift 25
+	Tmod	shift 24
+	Tandalso	shift 23
+	Torelse	shift 22
+
+
+	.	error
+
+
+state 79:
+
+	primary : Tlet decls Tin exp Tend .  (reduce by rule 14)
+
+
+
+	.	reduce by rule 14
+
+
+state 80:
+
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+	decl : Tval Tid Teq exp .  (reduce by rule 37)
+
+	Teq	shift 34
+	Tne	shift 33
+	Tlt	shift 32
+	Tle	shift 31
+	Tgt	shift 30
+	Tge	shift 29
+	Tadd	shift 28
+	Tsub	shift 27
+	Tmul	shift 26
+	Tdiv	shift 25
+	Tmod	shift 24
+	Tandalso	shift 23
+	Torelse	shift 22
+
+
+	.	reduce by rule 37
+
+
+state 81:
+
+	primary : Tif exp Tthen exp Telse . exp 
+
+	Tlparen	shift 18
+	Tif	shift 17
+	Tlet	shift 16
+	Tloop	shift 15
+	Tnot	shift 14
+	Tid	shift 13
+	Tinteger	shift 12
+
+	primary	goto 11
+	exp	goto 84
+
+	.	error
+
+
+state 82:
+
+	rest_args : Tcomma exp rest_args .  (reduce by rule 33)
+
+
+
+	.	reduce by rule 33
+
+
+state 83:
+
+	primary : Tloop Tid decls Tin exp Tend .  (reduce by rule 15)
+
+
+
+	.	reduce by rule 15
+
+error:  state 84: shift/reduce conflict (shift Torelse, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tandalso, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tmod, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tdiv, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tmul, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tsub, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tadd, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tge, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tgt, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tle, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tlt, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Tne, reduce by rule 13)
+error:  state 84: shift/reduce conflict (shift Teq, reduce by rule 13)
+
+state 84:
+
+	primary : Tif exp Tthen exp Telse exp .  (reduce by rule 13)
+	exp : exp . Torelse exp 
+	exp : exp . Tandalso exp 
+	exp : exp . Teq exp 
+	exp : exp . Tne exp 
+	exp : exp . Tlt exp 
+	exp : exp . Tle exp 
+	exp : exp . Tgt exp 
+	exp : exp . Tge exp 
+	exp : exp . Tadd exp 
+	exp : exp . Tsub exp 
+	exp : exp . Tmul exp 
+	exp : exp . Tdiv exp 
+	exp : exp . Tmod exp 
+
+	Teq	shift 34
+	Tne	shift 33
+	Tlt	shift 32
+	Tle	shift 31
+	Tgt	shift 30
+	Tge	shift 29
+	Tadd	shift 28
+	Tsub	shift 27
+	Tmul	shift 26
+	Tdiv	shift 25
+	Tmod	shift 24
+	Tandalso	shift 23
+	Torelse	shift 22
+
+
+	.	reduce by rule 13
+
+
+state 85:
+
+
+	Teof	accept
+
+
+	.	error
+
+304 of 556 action table entries left after compaction
+68 goto table entries

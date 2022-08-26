@@ -1,0 +1,8 @@
+fun fib n = 
+  loop recur val i = 1    # inv: a = F[i], b = F[i-1]
+             val a = 1
+             val b = 1
+    in if i >= n
+       then a
+       else recur (i+1, a+b, a)
+   end

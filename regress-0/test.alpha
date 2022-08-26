@@ -1,0 +1,27 @@
+Lambda limit
+  Loop l.220
+    Decl i.221
+      Int 0
+    Decl c.222
+      Int 0
+    If 
+      Prim =
+        Var i.221
+        Var limit
+      Var c.222
+      Let 
+        Decl c'.223
+          If 
+            Prim =
+              App f
+                Var i.221
+              Int 0
+            Prim +
+              Var c.222
+              Int 1
+            Var c.222
+        App l.220
+          Prim +
+            Var i.221
+            Int 1
+          Var c'.223

@@ -1,0 +1,23 @@
+Lambda p q r x y
+  If 
+    If 
+      If 
+        If 
+          Var p
+          If 
+            Var q
+            Int 1
+            Int 0
+          Int 0
+        If 
+          If 
+            Var r
+            Int 0
+            Int 1
+          Int 1
+          Int 0
+        Int 0
+      Int 0
+      Int 1
+    Var x
+    Var y

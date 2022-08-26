@@ -1,0 +1,7 @@
+Lambda x
+  Let 
+    Decl temp.85
+      App f
+        Var x
+    App f
+      Var temp.85

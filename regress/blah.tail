@@ -1,0 +1,22 @@
+Lambda x
+  Let 
+    Decl temp.294
+      If 
+        Prim <=
+          Var x
+          Int 0
+        If 
+          Prim =
+            Prim mod
+              Var x
+              Int 2
+            Int 0
+          Int 1
+          Int 0
+        Int 0
+    If 
+      Var temp.294
+      App foo
+        Var x
+      App bar
+        Var x

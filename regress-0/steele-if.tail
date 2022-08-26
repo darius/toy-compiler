@@ -1,0 +1,11 @@
+Lambda x y z
+  Let 
+    Decl temp.31
+      If 
+        Var x
+        Var y
+        Var z
+    If 
+      Var temp.31
+      Int 42
+      Int 137

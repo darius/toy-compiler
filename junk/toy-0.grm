@@ -1,0 +1,88 @@
+%%
+%term 
+      Teof | Tcomma | Tlparen | Trparen 
+    | Tfun | Tand | Tif | Tthen | Telse | Tlet | Tval | Tin | Tend | Tloop
+    | Teq | Tne | Tlt | Tle | Tgt | Tge | Tadd | Tsub | Tmul | Tdiv | Tmod 
+    | Tid of string
+    | Tinteger of int
+
+%nonterm  
+	  program 
+	| procdecl 
+	| mutuals 
+	| params 
+	| rest_params
+	| param
+	| exp
+	| primary
+	| args
+	| rest_args
+	| decls
+	| decl
+
+%pos int
+%verbose
+%start program
+%eop Teof
+%noshift Teof
+
+%name Toy
+
+%keyword Tfun Tand Tif Tthen Telse Tlet Tval Tin Tend Tloop
+
+%prefer Tthen Telse Tlparen
+
+%value Tid ("bogus")
+%value Tinteger (666)
+
+%nonassoc Teq Tne Tlt Tle Tgt Tge
+%left Tadd Tsub
+%left Tmul Tdiv Tmod
+
+%%
+
+program : Tfun procdecl				()
+
+procdecl:  Tid params Teq exp mutuals		()
+mutuals	:  Tand procdecl			()
+	|  					()
+
+params	:  param 				()
+	| Tlparen param rest_params Trparen	()
+
+rest_params :  Tcomma param rest_params		()
+	    |  					()
+
+param :  Tid					()
+
+exp	:  exp Teq  exp				()
+	|  exp Tne  exp				()
+	|  exp Tlt  exp				()
+	|  exp Tle  exp				()
+	|  exp Tgt  exp				()
+	|  exp Tge  exp				()
+	|  exp Tadd exp				()
+	|  exp Tsub exp				()
+	|  exp Tmul exp				()
+	|  exp Tdiv exp				()
+	|  exp Tmod exp				()
+	|  primary				()
+
+primary :  Tinteger				()
+	|  Tid					()
+	|  Tid args				()
+	|  Tlparen exp Trparen			()
+	|  Tif exp Tthen exp Telse exp		()
+	|  Tlet decls Tin exp Tend		()
+	|  Tloop Tid params Teq args Tin exp Tend	()
+
+args    :  exp 					()
+        |  Tlparen exp rest_args Trparen	()
+
+rest_args :  Tcomma exp rest_args		()
+          |  					()
+
+decls	:  decl decls				()
+	|					()
+
+decl	:  Tval Tid Teq exp			()

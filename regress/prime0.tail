@@ -1,0 +1,31 @@
+Lambda n
+  If 
+    Prim =
+      Prim mod
+        Var n
+        Int 2
+      Int 0
+    Prim =
+      Var n
+      Int 2
+    Loop scan.186
+      Decl i.187
+        Int 3
+      If 
+        Prim <
+          Var n
+          Prim *
+            Var i.187
+            Var i.187
+        Int 0
+        If 
+          Prim =
+            Prim mod
+              Var n
+              Var i.187
+            Int 0
+          Int 1
+          App scan.186
+            Prim +
+              Var i.187
+              Int 2

@@ -1,0 +1,16 @@
+Lproc p q r x y
+ Loop con.313
+  Ret X:x
+  Loop alt.314
+   Ret X:y
+   Loop con.319
+    Branch = X:r I:0
+     Jump alt.314
+     Jump con.313
+    Loop con.327
+     Branch = X:q I:0
+      Jump con.313
+      Jump con.319
+     Branch = X:p I:0
+      Jump con.313
+      Jump con.327

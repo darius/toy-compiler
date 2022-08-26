@@ -1,0 +1,8 @@
+Lproc n
+ Loop recur.76 i.77 a.78 b.79
+  Branch < X:i.77 X:n
+   Prim + X:i.77 I:1	-> mergeval.82
+    Prim + X:a.78 X:b.79	-> mergeval.83
+     Jump recur.76 X:mergeval.82 X:mergeval.83 X:a.78
+   Ret X:a.78
+  Jump recur.76 I:1 I:1 I:1

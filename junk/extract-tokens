@@ -1,0 +1,3 @@
+#!/bin/sh
+tr -s ' \t\n().,' '\n' <toy.lex | grep '^T.' >tokenlist
+

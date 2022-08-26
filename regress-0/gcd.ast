@@ -1,0 +1,18 @@
+Lambda x y
+  If 
+    Prim =
+      Var y
+      Int 0
+    If 
+      Prim <
+        Var x
+        Int 0
+      Prim -
+        Int 0
+        Var x
+      Var x
+    App gcd
+      Var y
+      Prim mod
+        Var x
+        Var y

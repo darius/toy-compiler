@@ -1,0 +1,8 @@
+Lambda x
+  App g
+    App h
+      Var x
+    App j
+      Prim +
+        Var x
+        Int 1

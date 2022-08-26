@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# usage: check program-name
+
+program=$1
+
+awk '
+  BEGIN { program = ARGV[1]; ARGV[1] = ""; }
+
+  { expected = $1; $1 = "";
+    "./" program $0 | getline output;
+    if (output != expected)
+      print output " <== " program $0 "\tbut expected " expected
+  }
+
+' $program expected.$program

@@ -1,0 +1,34 @@
+Lambda x y z
+  If 
+    Prim <=
+      Var x
+      Var y
+    Var z
+    Let 
+      Decl temp.211
+        App tak
+          Prim -
+            Var x
+            Int 1
+          Var y
+          Var z
+      Let 
+        Decl temp.212
+          App tak
+            Prim -
+              Var y
+              Int 1
+            Var z
+            Var x
+        Let 
+          Decl temp.213
+            App tak
+              Prim -
+                Var z
+                Int 1
+              Var x
+              Var y
+          App tak
+            Var temp.211
+            Var temp.212
+            Var temp.213

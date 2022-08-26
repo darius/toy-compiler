@@ -1,0 +1,11 @@
+Lambda x y
+  Let 
+    Decl x.207
+      Prim +
+        Var x
+        Var y
+    Decl y.208
+      Prim -
+        Var x
+        Var y
+    Var y.208

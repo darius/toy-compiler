@@ -1,0 +1,5 @@
+fun f (x, y) = 
+  let val x = x + y
+      val y = x - y
+   in y
+  end

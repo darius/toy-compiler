@@ -1,0 +1,14 @@
+Lambda x
+  Let 
+    Decl temp.92
+      App h
+        Var x
+    Let 
+      Decl temp.93
+        App j
+          Prim +
+            Var x
+            Int 1
+      App g
+        Var temp.92
+        Var temp.93

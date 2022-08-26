@@ -1,0 +1,1 @@
+fun f x = g (h x, h (x+1))  

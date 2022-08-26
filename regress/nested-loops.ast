@@ -1,0 +1,33 @@
+Lambda limit
+  Loop recur
+    Decl best_start
+      Int 1
+    Decl best_period
+      Int 0
+    Decl k
+      Var limit
+    If 
+      Prim =
+        Var k
+        Int 1
+      Var best_start
+      Let 
+        Decl p
+          Loop recur
+            Decl p
+              Int 0
+            If 
+              Prim =
+                Var k
+                Int 1
+              Var p
+              App recur
+                Prim +
+                  Var p
+                  Int 1
+        App recur
+          Var best_start
+          Var best_period
+          Prim -
+            Var k
+            Int 1

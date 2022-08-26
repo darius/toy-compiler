@@ -1,0 +1,8 @@
+Lproc x y z
+ Loop join.32 temp.31
+  Branch = X:temp.31 I:0
+   Ret I:137
+   Ret I:42
+  Branch = X:x I:0
+   Jump join.32 X:z
+   Jump join.32 X:y

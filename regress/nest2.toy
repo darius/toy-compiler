@@ -1,0 +1,1 @@
+fun m (x, y) = h (y, y) + h (x, x)
