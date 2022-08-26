@@ -8,6 +8,8 @@ Continuations_, and Kelsey and Hudak's ``Realistic compilation by
 program transformation''.
 
 ast.sml gives the abstract syntax of the source language.
+main.sml ties the compiler passes together.
+mips-sim.sml is the aforementioned backend, to go with runtime/ C code.
 
 I forget how to build it, except I used CM with SML/NJ, plus a parser
 generator, I think one called MLLex/MLYacc. (But the generated parser
